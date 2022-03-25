@@ -1,0 +1,33 @@
+version: '3.1'
+
+volumes: #docker will mount the volume into /var/lib/docker/volumes
+  grafana-volume:
+
+services:
+
+  dbpostgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    volumes:
+       - ./volumes/postgresql:/var/lib/postgresql
+       - ./pg-conf-files/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+#      - ./postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pguser
+      POSTGRES_DB: pgdb
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana-enterprise:8.2.0
+    volumes:
+      - grafana-volume:/var/lib/grafana
+    ports:
+      - 3000:3000
+    user: '472'
+    links:
+      - "dbpostgres"
+
