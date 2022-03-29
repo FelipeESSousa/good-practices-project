@@ -1,2 +1,5 @@
-# good-pratices-project
-Project for pratice good pratices for microservices
+# Good Practices Project
+Project for practice good practices for microservices
+
+- [PT-BR](./README.pt-br.md)
+- [EN-US](./README.en-us.md)
