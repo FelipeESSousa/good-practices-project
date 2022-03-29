@@ -1,7 +1,7 @@
-package br.com.goodpratices.resources.handlers;
+package br.com.goodpractices.resources.handlers;
 
-import br.com.goodpratices.services.dto.ExceptionResponse;
-import br.com.goodpratices.resources.handlers.enums.ExceptionsMessagesEnum;
+import br.com.goodpractices.services.dto.ExceptionResponse;
+import br.com.goodpractices.resources.handlers.enums.ExceptionsMessagesEnum;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

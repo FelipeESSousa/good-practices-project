@@ -1,4 +1,4 @@
-package br.com.goodpratices.services.dto;
+package br.com.goodpractices.services.dto;
 
 import java.time.LocalDateTime;
 

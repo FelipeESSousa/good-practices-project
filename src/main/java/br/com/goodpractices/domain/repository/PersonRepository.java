@@ -1,6 +1,6 @@
-package br.com.goodpratices.domain.repository;
+package br.com.goodpractices.domain.repository;
 
-import br.com.goodpratices.domain.model.Person;
+import br.com.goodpractices.domain.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

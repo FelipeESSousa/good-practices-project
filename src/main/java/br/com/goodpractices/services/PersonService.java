@@ -1,9 +1,9 @@
-package br.com.goodpratices.services;
+package br.com.goodpractices.services;
 
-import br.com.goodpratices.domain.repository.PersonRepository;
-import br.com.goodpratices.services.dto.PersonRequest;
-import br.com.goodpratices.services.dto.PersonResponse;
-import br.com.goodpratices.services.mapper.PersonMapper;
+import br.com.goodpractices.domain.repository.PersonRepository;
+import br.com.goodpractices.services.dto.PersonRequest;
+import br.com.goodpractices.services.dto.PersonResponse;
+import br.com.goodpractices.services.mapper.PersonMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

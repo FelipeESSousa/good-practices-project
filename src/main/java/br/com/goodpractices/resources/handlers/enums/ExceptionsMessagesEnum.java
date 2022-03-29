@@ -1,4 +1,4 @@
-package br.com.goodpratices.resources.handlers.enums;
+package br.com.goodpractices.resources.handlers.enums;
 
 public enum ExceptionsMessagesEnum {
 

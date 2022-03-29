@@ -1,8 +1,8 @@
-package br.com.goodpratices.services.mapper;
+package br.com.goodpractices.services.mapper;
 
-import br.com.goodpratices.domain.model.Person;
-import br.com.goodpratices.services.dto.PersonRequest;
-import br.com.goodpratices.services.dto.PersonResponse;
+import br.com.goodpractices.domain.model.Person;
+import br.com.goodpractices.services.dto.PersonRequest;
+import br.com.goodpractices.services.dto.PersonResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

@@ -1,8 +1,8 @@
-package br.com.goodpratices.resources;
+package br.com.goodpractices.resources;
 
-import br.com.goodpratices.services.dto.PersonRequest;
-import br.com.goodpratices.services.dto.PersonResponse;
-import br.com.goodpratices.services.PersonService;
+import br.com.goodpractices.services.dto.PersonRequest;
+import br.com.goodpractices.services.dto.PersonResponse;
+import br.com.goodpractices.services.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

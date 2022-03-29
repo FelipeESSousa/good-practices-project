@@ -1,4 +1,4 @@
-package br.com.goodpratices.domain.model;
+package br.com.goodpractices.domain.model;
 
 import lombok.Data;
 
