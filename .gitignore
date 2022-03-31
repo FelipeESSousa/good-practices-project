@@ -24,8 +24,7 @@ hs_err_pid*
 
 /build*
 /logs*
-.idea*
-.gradle*
+/.idea*
 /volumes*
 
 newrelic.yml
