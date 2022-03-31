@@ -15,10 +15,7 @@ public interface PersonMapper {
     @Mapping(source = "id", target = "id")
     PersonResponse convert(Person person);
 
-    @Mapping(source = "name", target = "name")
-    @Mapping(source = "id", target = "id")
-    Person convert(PersonResponse sourceCode);
-
+    @Mapping(target = "id", ignore = true)
     Person convert(PersonRequest sourceCode);
 
     List<PersonResponse> convert(List<Person> persons);
