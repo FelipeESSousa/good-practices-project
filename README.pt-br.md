@@ -12,3 +12,13 @@ Swagger link (Open API)
 ```
 http://localhost:8080/swagger-ui/index.html)
 ```
+
+Para rodar os testes:
+```ssh
+./gradlew clean test
+```
+
+Endereço para o relátorio de testes:
+```
+- ./build/reports/tests/test/index.html
+```

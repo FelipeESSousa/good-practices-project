@@ -1,18 +1,20 @@
 package br.com.goodpractices.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "person")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Builder
+@EqualsAndHashCode(callSuper = false)
+@ToString
+@Getter
+@Setter
 public class Person extends AuditObject {
 
     @Id
