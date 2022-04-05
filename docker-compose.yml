@@ -12,7 +12,6 @@ services:
     restart: always
     volumes:
       - postgres-data:/var/lib/postgresql/data
-#       - ./volumes/postgresql/data:/var/lib/postgresql/data
       - ./pg-conf-files/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
     ports:
       - "5432:5432"

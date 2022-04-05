@@ -39,4 +39,18 @@ public class PersonResource {
         return ResponseEntity.ok(personService.findById(id));
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<PersonResponse> deleteById(@PathVariable("id") Long id) {
+        personService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping()
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<PersonResponse> deleteAll() {
+        personService.deleteAll();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }
