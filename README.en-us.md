@@ -6,6 +6,8 @@ docker-compose -d
 For run the migration flyway:
 ```ssh
 ./gradlew flywayMigrate -i
+./gradlew flywayMigrate -i -Dflyway.user=pguser -Pflyway.password=pguser
+./gradlew flywayMigrate -i -Dflyway.user=pguser -Pflyway.password=pguser -Pflyway.url=jdbc:postgresql://localhost:5432/pgdb
 ```
 
 Swagger link (Open API)

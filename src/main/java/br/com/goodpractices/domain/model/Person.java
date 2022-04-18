@@ -12,9 +12,7 @@ import javax.persistence.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Builder
 @EqualsAndHashCode(callSuper = false)
-@ToString
-@Getter
-@Setter
+@Data
 public class Person extends AuditObject {
 
     @Id

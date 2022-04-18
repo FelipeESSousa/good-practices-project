@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @DataJpaTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class PersonRepositoryTests {
+class PersonRepositoryTests {
 
     @Autowired
     private PersonRepository personRepository;
@@ -25,7 +25,7 @@ public class PersonRepositoryTests {
     @Test
     @Order(1)
     @Rollback(value = false)
-    public void savePersonTest() {
+    void savePersonTest() {
 
         Person person = Person.builder()
                 .name("Felipe")
@@ -33,12 +33,12 @@ public class PersonRepositoryTests {
 
         personRepository.save(person);
 
-        Assertions.assertThat(person.getId()).isGreaterThan(0);
+        Assertions.assertThat(person.getId()).isPositive();
     }
 
     @Test
     @Order(2)
-    public void getEmployeeTest() {
+    void getPersonTest() {
 
         Person person = personRepository.findById(1L).get();
 
@@ -48,18 +48,18 @@ public class PersonRepositoryTests {
 
     @Test
     @Order(3)
-    public void getListOfEmployeesTest() {
+    void getListOfPersonsTest() {
 
         List<Person> persons = personRepository.findAll();
 
-        Assertions.assertThat(persons.size()).isGreaterThan(0);
+        Assertions.assertThat(persons).isNotEmpty();
 
     }
 
     @Test
     @Order(4)
     @Rollback(value = false)
-    public void updateEmployeeTest() {
+    void updatePersonTest() {
 
         String newName = "Jose";
 
@@ -76,20 +76,20 @@ public class PersonRepositoryTests {
     @Test
     @Order(5)
     @Rollback(value = false)
-    public void deleteEmployeeTest() {
+    void deletePersonTest() {
 
         Person person = personRepository.findById(1L).get();
 
         personRepository.delete(person);
 
-        //employeeRepository.deleteById(1L);
+        //personRepository.deleteById(1L);
 
         Person person1 = null;
 
-        Optional<Person> optionalEmployee = personRepository.findById(1l);
+        Optional<Person> optionalPerson = personRepository.findById(1l);
 
-        if (optionalEmployee.isPresent()) {
-            person1 = optionalEmployee.get();
+        if (optionalPerson.isPresent()) {
+            person1 = optionalPerson.get();
         }
 
         Assertions.assertThat(person1).isNull();

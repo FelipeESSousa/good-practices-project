@@ -28,7 +28,7 @@ public class MemoryLeakResource {
         try {
             List<Integer> incrementNumbersLeak = new ArrayList<>();
             var number = 0;
-            var sleepSeconds = 500l;
+            var sleepSeconds = 50l;
             while (true) {
                 incrementNumbersLeak.add(number);
                 number++;
@@ -36,7 +36,7 @@ public class MemoryLeakResource {
                 Thread.sleep(sleepSeconds);
             }
         } catch (InterruptedException e) {
-            log.error(e);
+            throw new RuntimeException(e);
         }
     }
 }

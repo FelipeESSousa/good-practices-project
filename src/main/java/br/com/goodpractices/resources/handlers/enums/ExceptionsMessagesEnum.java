@@ -2,7 +2,6 @@ package br.com.goodpractices.resources.handlers.enums;
 
 public enum ExceptionsMessagesEnum {
 
-    NOT_FOUND("Values not found for this search!"),
     INTERNAL_ERROR("Something going wrong!");
 
     private String message;
@@ -11,7 +10,7 @@ public enum ExceptionsMessagesEnum {
         this.message = msg;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return this.message;
     }
 }

@@ -1,8 +1,10 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.6'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
-	id "org.flywaydb.flyway" version "8.5.5"
+    id 'org.springframework.boot' version '2.6.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id "org.flywaydb.flyway" version "8.5.5"
+    id 'jacoco'
+    id "org.sonarqube" version "3.3"
 }
 
 group = 'br.com.goodpractices'
@@ -11,35 +13,83 @@ sourceCompatibility = '17'
 targetCompatibility = '17'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
-	implementation 'org.springdoc:springdoc-openapi-ui:1.6.6'
-	implementation 'org.postgresql:postgresql:42.3.3'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.7'
+    implementation 'org.postgresql:postgresql:42.3.3'
 
-	compileOnly 'org.projectlombok:lombok:1.18.22'
-	compileOnly "org.flywaydb:flyway-core:8.5.5"
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    compileOnly 'org.flywaydb:flyway-core:8.5.7'
 
-	testCompileOnly 'org.projectlombok:lombok:1.18.22'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'com.h2database:h2:2.1.210'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.h2database:h2:2.1.210'
 
-	annotationProcessor 'org.projectlombok:lombok:1.18.22'
-	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
-	testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.5
+            }
+        }
+    }
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+    jacoco {
+        excludes = ["br/com/goodpractices/domain/model/*.class",
+                    "br/com/goodpractices/services/dto/*.class",
+                    "br/com/goodpractices/resources/MemoryLeakResource.class"]
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.projectName", "Good Practices API"
+        property "sonar.projectDescription","Good Practices API"
+        property "sonar.projectKey", ""
+        property "sonar.coverage.jacoco.xmlReportPaths", "$rootDir/build/reports/jacoco/test/jacocoTestReport.xml"
+
+        property "sonar.host.url", "http://127.0.0.1:9000/" //endereço do seu server do SonarQube
+        property "sonar.language", "java" //não percebi nenhuma diferença ao trocar para kotlin
+
+        property "sonar.sources", "src/main/" //quais são os arquivos .java e .kt daonde o SonarQube vai tirar as métricas
+        property "sonar.tests", "src/test" //O caminho para os testes unitários. Mas não sei pra q server ainda já que os relatórios de cobertura são extraídos do jacoco
+
+        //Configuração da parte do Jacoco. Não precisa ter essas linhas caso o teste de coverage não for necessário
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.junit.reportsPath", "build/reports/tests/testtestDebugUnitTest.exec"
+        property "sonar.android.lint.report", "build/reports/lint-results.xml"
+    }
 }
 
 flyway {
-	url = 'jdbc:postgresql://localhost:5432/pgdb'
-	user = 'pguser'
-	password = 'pguser'
+//	url = 'jdbc:postgresql://localhost:5432/pgdb'
+//	user = 'pguser'
+//	password = 'pguser'
 }

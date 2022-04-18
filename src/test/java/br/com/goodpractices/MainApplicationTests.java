@@ -14,6 +14,11 @@ class MainApplicationTests {
     private PersonResource personResource;
 
     @Test
+    void main() {
+        MainApplication.main(new String[] {});
+    }
+
+    @Test
     void contextLoads() {
         assertThat(personResource).isNotNull();
     }

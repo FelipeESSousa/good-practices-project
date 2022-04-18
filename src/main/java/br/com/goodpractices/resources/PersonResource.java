@@ -35,7 +35,7 @@ public class PersonResource {
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<PersonResponse> findAll(@PathVariable("id") Long id) {
+    public ResponseEntity<PersonResponse> findById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(personService.findById(id));
     }
 
