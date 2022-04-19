@@ -3,6 +3,7 @@ version: '3.1'
 volumes: #docker will mount the volume into /var/lib/docker/volumes
   grafana-volume:
   postgres-data:
+  sonarqube:
 
 services:
 
@@ -27,6 +28,21 @@ services:
     ports:
       - 3000:3000
     user: '472'
+    links:
+      - "dbpostgres"
+
+  sonarqube:
+    image: sonarqube:community
+    depends_on:
+      - dbpostgres
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://dbpostgres:5432/pgdb
+      SONAR_JDBC_USERNAME: pguser
+      SONAR_JDBC_PASSWORD: pguser
+    volumes:
+      - sonarqube:/opt/sonarqube
+    ports:
+      - "9000:9000"
     links:
       - "dbpostgres"
 

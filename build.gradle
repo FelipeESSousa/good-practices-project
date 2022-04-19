@@ -72,19 +72,18 @@ sonarqube {
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.projectName", "Good Practices API"
         property "sonar.projectDescription","Good Practices API"
-        property "sonar.projectKey", ""
+        property "sonar.projectKey", "Good-Practices-API"
         property "sonar.coverage.jacoco.xmlReportPaths", "$rootDir/build/reports/jacoco/test/jacocoTestReport.xml"
+        property "sonar.login", "admin"
+        property "sonar.password", "sonar"
 
-        property "sonar.host.url", "http://127.0.0.1:9000/" //endereço do seu server do SonarQube
-        property "sonar.language", "java" //não percebi nenhuma diferença ao trocar para kotlin
+        property "sonar.host.url", "http://127.0.0.1:9000/"
+        property "sonar.language", "java"
 
-        property "sonar.sources", "src/main/" //quais são os arquivos .java e .kt daonde o SonarQube vai tirar as métricas
-        property "sonar.tests", "src/test" //O caminho para os testes unitários. Mas não sei pra q server ainda já que os relatórios de cobertura são extraídos do jacoco
+        property "sonar.sources", "src/main/"
+        property "sonar.tests", "src/test/"
 
-        //Configuração da parte do Jacoco. Não precisa ter essas linhas caso o teste de coverage não for necessário
         property "sonar.java.coveragePlugin", "jacoco"
-        property "sonar.junit.reportsPath", "build/reports/tests/testtestDebugUnitTest.exec"
-        property "sonar.android.lint.report", "build/reports/lint-results.xml"
     }
 }
 

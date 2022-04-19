@@ -34,7 +34,10 @@ Utilização de dtos para receber os objetos e também retornar as informações
 # Passo a passo
 
 Para rodar o docker do projeto:
+Utilize o comando sh docker-run.sh, pois nele contém configurações adicionais necessárias para o projeto.
 ```ssh
+./docker-run.sh 
+ou
 docker-compose -d
 ```
 
@@ -59,6 +62,42 @@ Endereço para o relátorio de testes:
 ```
 ./build/reports/tests/test/index.html
 ```
+
+
+### SonarQube
+
+Quando o docker subir, a aplicação sonarqube ficará disponível no seguinte endereço:
+
+```url
+http://localhost:9000
+```
+
+Ao acessa-la, será redirecionado para a tela de login, as credências são:
+```
+login: admin
+password: admin
+```
+Ao realizar o primeiro acesso, será pedido para alterar a senha, no caso coloque a senha como **sonar** para que o nosso exempo funcione.
+Esta senha é utilizada no **build.gradle** do nosso projeto.
+
+#### Subindo relatório de testes para o sonarqube
+Uma vez que o seu sonarqube está configurado, é necessário subir a avaliação para ele.
+Para que isso seja feito é necessário rodar os testes, com o seguinte comando:
+```ssh
+./gradlew clean test
+```
+Assim será gerado o relatório do jacoco que será utilizado como base de informações para o sonar, parar enviar o relatório para o site, basta rodar:
+```ssh
+./gradlew sonarqube
+```
+Assim você pode ir no site e verificar a saúde da sua aplicação.
+```
+http://localhost:9000/dashboard?id=Good-Practices-API
+```
+
+
+
+### New Relic
 
 Crie o arquivo **`newrelic.yml`** e adicione na raiz do seu projeto, este arquivo pode ser encontrado na sua conta do newrelic e no link:
 
